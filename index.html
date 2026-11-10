@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taha Ladeb</title>
+<meta name="description" content="Page personnelle de Taha Ladeb, doctorant en mathématiques au CEREMADE (Université Paris Dauphine-PSL).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: identity column on the left, dated feed of documents, links and notes on the right. */
+:root {
+  --bg: #f3f5f7;
+  --surface: #ffffff;
+  --ink: #15212c;
+  --muted: #5b6875;
+  --line: #d4dae0;
+  --accent: #1d5c88;
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f151b; --surface: #172029; --ink: #e3e9ef; --muted: #93a1ae;
+    --line: #2a3642; --accent: #7fb9e2;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.6 var(--font-body); }
+a { color: var(--accent); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.page {
+  max-width: 1040px; margin: 0 auto; padding: 48px 24px 80px;
+  display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 56px;
+}
+.who { position: sticky; top: 32px; align-self: start; display: flex; flex-direction: column; gap: 18px; }
+.who h1 { font: 500 2.5rem/1.05 var(--font-display); margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+.role { font: 500 0.78rem/1.5 var(--font-mono); color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin: 0; }
+.bio { margin: 0; white-space: pre-wrap; max-width: 38ch; }
+.rule { height: 1px; background: var(--line); border: 0; margin: 0; width: 100%; }
+.who dl { margin: 0; display: grid; gap: 10px; font-size: 0.9rem; }
+.who dt { font: 500 0.7rem/1.4 var(--font-mono); color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.who dd { margin: 0; overflow-wrap: anywhere; }
+.feed { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+.feed-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--ink); padding-bottom: 10px; }
+.feed-head h2 { font: 500 1.5rem/1.2 var(--font-display); margin: 0; }
+.filters { display: flex; flex-wrap: wrap; gap: 4px; }
+.filters button {
+  font: 500 0.78rem/1 var(--font-mono); padding: 7px 10px; border: 1px solid transparent; border-radius: 3px;
+  background: none; color: var(--muted); cursor: pointer;
+}
+.filters button:hover { color: var(--ink); }
+.filters button[aria-pressed="true"] { color: var(--ink); border-color: var(--ink); }
+.items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.item { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.item time { font: 400 0.78rem/1.9 var(--font-mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.item-main { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.kind { font: 500 0.68rem/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.item h3 { font: 500 1.25rem/1.3 var(--font-display); margin: 0; text-wrap: balance; overflow-wrap: anywhere; }
+.item h3 a { color: inherit; text-decoration-color: var(--line); }
+.item h3 a:hover { text-decoration-color: var(--accent); color: var(--accent); }
+.item p { margin: 0; max-width: 65ch; white-space: pre-wrap; overflow-wrap: anywhere; }
+.meta { font: 400 0.78rem/1.5 var(--font-mono); color: var(--muted); overflow-wrap: anywhere; }
+.state { color: var(--muted); padding: 24px 0; margin: 0; }
+[hidden] { display: none !important; }
+footer { grid-column: 1 / -1; font: 400 0.75rem/1.5 var(--font-mono); color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
+@media (max-width: 780px) {
+  .page { grid-template-columns: minmax(0, 1fr); gap: 36px; padding: 32px 18px 56px; }
+  .who { position: static; }
+  .who h1 { font-size: 2.1rem; }
+  .item { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .item time { line-height: 1.4; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <aside class="who">
+    <h1 id="nom">Taha Ladeb</h1>
+    <p class="role" id="role"></p>
+    <p class="bio" id="bio"></p>
+    <hr class="rule">
+    <dl id="infos"></dl>
+  </aside>
+
+  <main class="feed">
+    <div class="feed-head">
+      <h2>Documents et partages</h2>
+      <div class="filters" role="group" aria-label="Filtrer">
+        <button type="button" data-filter="all" aria-pressed="true">Tout</button>
+        <button type="button" data-filter="pdf" aria-pressed="false">PDF</button>
+        <button type="button" data-filter="lien" aria-pressed="false">Liens</button>
+        <button type="button" data-filter="note" aria-pressed="false">Notes</button>
+      </div>
+    </div>
+    <p class="state" id="state" hidden></p>
+    <ul class="items" id="items"></ul>
+  </main>
+
+  <footer id="pied"></footer>
+</div>
+
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="contenu.js"></script>
+<script>
+(function () {
+  var SITE = window.SITE || {};
+  var POSTS = (window.PUBLICATIONS || []).slice();
+  var LABEL = { pdf: 'PDF', lien: 'Lien', note: 'Note' };
+  var filter = 'all';
+  var $ = function (id) { return document.getElementById(id); };
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+  function safeUrl(u) {
+    try { var x = new URL(u, location.href); return /^https?:$|^file:$/.test(x.protocol) ? x.href : null; }
+    catch (e) { return null; }
+  }
+  function fmtDate(s) {
+    var d = new Date(s + 'T12:00:00');
+    return isNaN(d) ? (s || '') : d.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' });
+  }
+
+  // identity column
+  if (SITE.nom) { $('nom').textContent = SITE.nom; document.title = SITE.nom; }
+  $('role').textContent = SITE.role || '';
+  $('bio').textContent = SITE.presentation || '';
+  (SITE.infos || []).forEach(function (row) {
+    var div = el('div');
+    div.appendChild(el('dt', null, row[0]));
+    var dd = el('dd');
+    var href = row[2] && safeUrl(row[2]);
+    if (href) { var a = el('a', null, row[1]); a.href = href; dd.appendChild(a); }
+    else if (row[2] && /^mailto:/.test(row[2])) { var m = el('a', null, row[1]); m.href = row[2]; dd.appendChild(m); }
+    else dd.textContent = row[1];
+    div.appendChild(dd);
+    $('infos').appendChild(div);
+  });
+  $('pied').textContent = 'Page personnelle de ' + (SITE.nom || '');
+
+  // feed, newest first
+  POSTS.sort(function (a, b) { return String(b.date || '').localeCompare(String(a.date || '')); });
+
+  function render() {
+    var list = $('items'), state = $('state');
+    list.textContent = '';
+    var shown = POSTS.filter(function (p) { return filter === 'all' || p.type === filter; });
+    state.hidden = shown.length > 0;
+    state.textContent = POSTS.length ? 'Rien dans cette catégorie.' : 'Aucune publication pour le moment.';
+
+    shown.forEach(function (p) {
+      var li = el('li', 'item');
+      li.appendChild(el('time', null, fmtDate(p.date)));
+      var main = el('div', 'item-main');
+      main.appendChild(el('span', 'kind', LABEL[p.type] || 'Note'));
+
+      var h = el('h3');
+      var href = p.type === 'pdf' ? safeUrl(p.fichier) : p.type === 'lien' ? safeUrl(p.url) : null;
+      if (href) {
+        var a = el('a', null, p.titre || p.fichier || p.url);
+        a.href = href;
+        if (p.type === 'lien') { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+        h.appendChild(a);
+      } else h.textContent = p.titre || 'Sans titre';
+      main.appendChild(h);
+
+      if (p.texte) main.appendChild(el('p', null, p.texte));
+      if (p.type === 'pdf' && p.fichier) main.appendChild(el('span', 'meta', String(p.fichier).split('/').pop()));
+      if (p.type === 'lien' && href) {
+        try { main.appendChild(el('span', 'meta', new URL(href).hostname.replace(/^www\./, ''))); } catch (e) {}
+      }
+      li.appendChild(main);
+      list.appendChild(li);
+    });
+    if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([list]).catch(function () {});
+  }
+
+  document.querySelectorAll('.filters button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      filter = b.dataset.filter;
+      document.querySelectorAll('.filters button').forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
+      render();
+    });
+  });
+  render();
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.min.js" async></script>
+</body>
+</html>
